@@ -22,6 +22,9 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Features](internals/features.md) — Kernel feature flags and capability detection
 - [Kernel Changelog](internals/kernel-changelog.md) — Per-release io_uring changes (6.14–6.19) ✨
 - [liburing API](internals/liburing-api.md) — liburing userspace API reference ✨
+- [Worker Pool](internals/worker-pool.md) — io-wq thread pool internals, limits, NUMA ✨✨
+- [Memory Ordering](internals/memory-ordering.md) — Shared memory barriers, SQ/CQ synchronization ✨✨
+- [Registered Wait](internals/registered-wait.md) — io_uring_reg_wait regions (6.13+) ✨✨
 
 ### [Patterns](patterns/)
 - [Networking](patterns/networking.md) — TCP accept/recv/send, multishot, zero-copy
@@ -32,10 +35,12 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [SQ Polling](patterns/sqpoll.md) — SQPOLL mode for zero-syscall submission
 - [Zero-Copy RX](patterns/zero-copy-rx.md) — zcrx deep dive with structs and flow ✨
 - [epoll Migration](patterns/epoll-migration.md) — Incremental migration from epoll to io_uring ✨
+- [Error Handling](patterns/error-handling.md) — CQE errors, EINTR, link chains, multishot ✨✨
 
 ### [Benchmarks](benchmarks/)
 - [io_uring vs epoll](benchmarks/iouring-vs-epoll.md) — The numbers that matter
 - [io_uring vs aio](benchmarks/iouring-vs-aio.md) — Why aio is dead
+- [io_uring vs DPDK](benchmarks/iouring-vs-dpdk.md) — Network I/O: kernel stack vs. bypass ✨✨
 
 ### [Frameworks](frameworks/)
 - [Overview](frameworks/overview.md) — Who's using io_uring and how
@@ -47,11 +52,14 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Seastar](frameworks/seastar.md) — C++ thread-per-core, ScyllaDB/Redpanda ✨
 - [FUSE over io_uring](frameworks/fuse-io-uring.md) — Kernel↔userspace filesystem communication ✨
 - [Adoption Status](frameworks/adoption-status.md) — Who's using it, who isn't, and why ✨
+- [TigerBeetle Source](frameworks/tigerbeetle-source.md) — Deep dive into io/linux.zig implementation ✨✨
 
 ### [Pitfalls](pitfalls/)
 - [Common Mistakes](pitfalls/common-mistakes.md) — What will bite you
 - [Security](pitfalls/security.md) — Kernel attack surface and mitigations
 - [BPF Filtering](pitfalls/bpf-filtering.md) — Fine-grained io_uring sandboxing ✨
+- [Debugging](pitfalls/debugging.md) — Tracepoints, bpftrace, perf, ftrace recipes ✨✨
+- [Cloud & Containers](pitfalls/cloud-containers.md) — Provider status, seccomp, enabling io_uring ✨✨
 
 ### [Resources](resources/)
 - [Links](resources/links.md) — Papers, talks, articles, source code
