@@ -1,6 +1,6 @@
 # Opcodes Reference
 
-Complete list of io_uring operations as of kernel 6.14+. Extracted from `include/uapi/linux/io_uring.h`.
+Complete list of io_uring operations as of kernel 6.19+. Extracted from `include/uapi/linux/io_uring.h` (liburing master, March 2026).
 
 ## I/O Operations
 
@@ -15,8 +15,8 @@ Complete list of io_uring operations as of kernel 6.14+. Extracted from `include
 | `IORING_OP_READ` | 22 | Simple read (addr + len) | 5.6 |
 | `IORING_OP_WRITE` | 23 | Simple write (addr + len) | 5.6 |
 | `IORING_OP_READ_MULTISHOT` | 47 | Multishot read | 6.6 |
-| `IORING_OP_READV_FIXED` | 57 | Vectored read into registered buffers | 6.14 |
-| `IORING_OP_WRITEV_FIXED` | 58 | Vectored write from registered buffers | 6.14 |
+| `IORING_OP_READV_FIXED` | 58 | Vectored read into registered buffers | 6.15 |
+| `IORING_OP_WRITEV_FIXED` | 59 | Vectored write from registered buffers | 6.15 |
 
 ## Networking
 
@@ -32,9 +32,9 @@ Complete list of io_uring operations as of kernel 6.14+. Extracted from `include
 | `IORING_OP_SOCKET` | 45 | socket(2) | 5.19 |
 | `IORING_OP_SEND_ZC` | 46 | Zero-copy send | 6.0 |
 | `IORING_OP_SENDMSG_ZC` | 47 | Zero-copy sendmsg | 6.0 |
-| `IORING_OP_RECV_ZC` | 56 | Zero-copy recv | 6.12 |
-| `IORING_OP_BIND` | 55 | bind(2) | 6.11 |
-| `IORING_OP_LISTEN` | 56 | listen(2) | 6.11 |
+| `IORING_OP_BIND` | 54 | bind(2) | 6.14 |
+| `IORING_OP_LISTEN` | 55 | listen(2) | 6.14 |
+| `IORING_OP_RECV_ZC` | 56 | Zero-copy recv | 6.15 |
 
 ## Poll
 
@@ -43,7 +43,7 @@ Complete list of io_uring operations as of kernel 6.14+. Extracted from `include
 | `IORING_OP_POLL_ADD` | 6 | Add poll request | 5.1 |
 | `IORING_OP_POLL_REMOVE` | 7 | Remove poll | 5.1 |
 | `IORING_OP_EPOLL_CTL` | 29 | epoll_ctl via io_uring | 5.6 |
-| `IORING_OP_EPOLL_WAIT` | 57 | epoll_wait via io_uring | 6.14 |
+| `IORING_OP_EPOLL_WAIT` | 57 | epoll_wait via io_uring | 6.15 |
 
 ## File Operations
 
@@ -79,7 +79,7 @@ Complete list of io_uring operations as of kernel 6.14+. Extracted from `include
 |--------|-------|-------------|-------|
 | `IORING_OP_SPLICE` | 30 | splice(2) | 5.7 |
 | `IORING_OP_TEE` | 33 | tee(2) | 5.8 |
-| `IORING_OP_PIPE` | 59 | pipe(2) | 6.14 |
+| `IORING_OP_PIPE` | 60 | pipe(2) | 6.14 |
 
 ## Buffer Management
 
@@ -124,8 +124,8 @@ Complete list of io_uring operations as of kernel 6.14+. Extracted from `include
 | Opcode | Value | Description | Since |
 |--------|-------|-------------|-------|
 | `IORING_OP_URING_CMD` | 46 | Device-specific command | 5.19 |
-| `IORING_OP_URING_CMD128` | 61 | 128-byte command variant | 6.14 |
-| `IORING_OP_NOP128` | 60 | 128-byte NOP | 6.14 |
+| `IORING_OP_NOP128` | 61 | 128-byte NOP (for mixed SQE rings) | 6.18 |
+| `IORING_OP_URING_CMD128` | 62 | 128-byte command variant | 6.18 |
 
 ## SQE Flags
 

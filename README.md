@@ -20,6 +20,8 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Setup Flags](internals/setup-flags.md) — `io_uring_setup()` flags and what they do
 - [Registration](internals/registration.md) — Buffer/file/ring registration operations
 - [Features](internals/features.md) — Kernel feature flags and capability detection
+- [Kernel Changelog](internals/kernel-changelog.md) — Per-release io_uring changes (6.14–6.19) ✨
+- [liburing API](internals/liburing-api.md) — liburing userspace API reference ✨
 
 ### [Patterns](patterns/)
 - [Networking](patterns/networking.md) — TCP accept/recv/send, multishot, zero-copy
@@ -28,6 +30,8 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Linked Operations](patterns/linked-ops.md) — SQE chaining and dependency graphs
 - [Buffer Management](patterns/buffer-management.md) — Provided buffers, ring buffers, incremental consumption
 - [SQ Polling](patterns/sqpoll.md) — SQPOLL mode for zero-syscall submission
+- [Zero-Copy RX](patterns/zero-copy-rx.md) — zcrx deep dive with structs and flow ✨
+- [epoll Migration](patterns/epoll-migration.md) — Incremental migration from epoll to io_uring ✨
 
 ### [Benchmarks](benchmarks/)
 - [io_uring vs epoll](benchmarks/iouring-vs-epoll.md) — The numbers that matter
@@ -40,10 +44,14 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Monoio](frameworks/monoio.md) — Rust thread-per-core from ByteDance
 - [tokio-uring](frameworks/tokio-uring.md) — io_uring backend for Tokio
 - [io_uring-go](frameworks/io-uring-go.md) — Go bindings
+- [Seastar](frameworks/seastar.md) — C++ thread-per-core, ScyllaDB/Redpanda ✨
+- [FUSE over io_uring](frameworks/fuse-io-uring.md) — Kernel↔userspace filesystem communication ✨
+- [Adoption Status](frameworks/adoption-status.md) — Who's using it, who isn't, and why ✨
 
 ### [Pitfalls](pitfalls/)
 - [Common Mistakes](pitfalls/common-mistakes.md) — What will bite you
 - [Security](pitfalls/security.md) — Kernel attack surface and mitigations
+- [BPF Filtering](pitfalls/bpf-filtering.md) — Fine-grained io_uring sandboxing ✨
 
 ### [Resources](resources/)
 - [Links](resources/links.md) — Papers, talks, articles, source code
@@ -64,14 +72,26 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 | `DEFER_TASKRUN` | 6.1 |
 | `SINGLE_ISSUER` | 6.0 |
 | `COOP_TASKRUN` | 5.19 |
-| Recv zero-copy | 6.12 |
-| Bind/Listen ops | 6.11 |
 | Futex ops | 6.7 |
-| Incremental buffer consumption | 6.10 |
-| Zero-copy RX (zcrx) | 6.12 |
 | NAPI busy poll | 6.9 |
+| Incremental buffer consumption (`IOU_PBUF_RING_INC`) | 6.10 |
+| FIXED_FD_INSTALL | 6.10 |
+| Hybrid IOPOLL | 6.13 |
+| Ring resize | 6.13 |
+| Clone buffers | 6.13 |
 | Registered wait regions | 6.13 |
-| Mixed SQE/CQE sizes | 6.14 |
+| Bind/Listen ops | 6.14 |
+| FUSE over io_uring | 6.14 |
+| R/W integrity/PI metadata | 6.14 |
+| Pipe op | 6.14 |
+| Zero-copy RX (zcrx) | 6.15 |
+| epoll_wait via io_uring | 6.15 |
+| Vectored registered buffers | 6.15 |
+| Mixed CQE sizes (`CQE_MIXED`) | 6.18 |
+| Mixed SQE sizes (`SQE_MIXED`) | 6.19 |
+| SQ Rewind | 6.19 |
+| BPF filtering | 6.19 |
+| zcrx queries / ctrl | 6.19 |
 
 ## Contributing
 
