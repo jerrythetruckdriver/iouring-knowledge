@@ -37,6 +37,10 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [eBPF Integration](internals/ebpf-integration.md) — BPF filtering, iterators, async convergence ✨⁶
 - [liburing Releases](internals/liburing-releases.md) — Release history, 2.14 current, API changes ✨⁶
 - [DMA-BUF Zero-Copy RX](internals/dmabuf-zcrx.md) — GPU/NPU direct networking via DMA-BUF (6.16) ✨⁶
+- [Clock Registration](internals/clock-register.md) — IORING_REGISTER_CLOCK custom clock source ✨⁷
+- [Mixed-Size SQEs/CQEs (Detail)](internals/mixed-sqe-cqe.md) — CQE_F_SKIP, CQE_F_32, memory savings math ✨⁷
+- [Task Restrictions](internals/task-restrictions.md) — Per-task opcode/flag limits, ring sandboxing ✨⁷
+- [Kernel Changelog 6.18](internals/kernel-changelog-6.18.md) — Mixed CQEs, multishot URING_CMD, query API ✨⁷
 
 ### [Patterns](patterns/)
 - [Networking](patterns/networking.md) — TCP accept/recv/send, multishot, zero-copy
@@ -56,6 +60,10 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Clone Buffers](patterns/clone-buffers.md) — Share registered buffer tables between rings ✨⁵
 - [Send MSG_RING Without Ring](patterns/send-msg-ring.md) — Signal a ring without owning one ✨⁵
 - [Waitid](patterns/waitid.md) — Async process waiting (IORING_OP_WAITID, 6.7) ✨⁶
+- [Pipe Operation](patterns/pipe-op.md) — IORING_OP_PIPE async pipe creation (6.14) ✨⁷
+- [Multishot URING_CMD](patterns/uring-cmd-multishot.md) — Generalized multishot for any driver (6.18) ✨⁷
+- [Decision Guide](patterns/decision-guide.md) — When to use io_uring vs alternatives ✨⁷
+- [Latency-Sensitive Workloads](patterns/realtime-latency.md) — Games, audio, trading: low-latency config ✨⁷
 
 ### [Benchmarks](benchmarks/)
 - [io_uring vs epoll](benchmarks/iouring-vs-epoll.md) — The numbers that matter
@@ -80,6 +88,7 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Zig std.Io](frameworks/zig-std-io.md) — io_uring as first-class stdlib backend (Feb 2026) ✨⁵
 - [Rust Ecosystem](frameworks/rust-ecosystem.md) — tokio-uring, monoio, glommio, compio, ringbahn survey ✨⁵
 - [ScyllaDB](frameworks/scylladb.md) — Production io_uring at petabyte scale ✨⁶
+- [ublk](frameworks/ublk.md) — Userspace block devices via io_uring passthrough ✨⁷
 
 ### [Pitfalls](pitfalls/)
 - [Common Mistakes](pitfalls/common-mistakes.md) — What will bite you
@@ -140,6 +149,10 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 | zcrx queries / ctrl | 6.19 |
 | REGISTER_SEND_MSG_RING | 6.10 |
 | REGISTER_CLONE_BUFFERS | 6.10 |
+| REGISTER_CLOCK | 6.10 |
+| Multishot URING_CMD | 6.18 |
+| ublk batch I/O | 6.18 |
+| ublk zero-copy | 6.15 |
 
 ## Contributing
 
