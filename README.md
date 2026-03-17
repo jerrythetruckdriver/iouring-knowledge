@@ -34,6 +34,9 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [NO_IOWAIT](internals/no-iowait.md) — Suppress iowait accounting (6.14+) ✨⁴
 - [Ring Resizing](internals/ring-resizing.md) — Runtime SQ/CQ ring resize (6.13+) ✨⁴
 - [Kernel Changelog 6.15–6.17](internals/kernel-changelog-6.15-6.17.md) — zcrx, epoll_wait, DMA-BUF, pipe ✨⁵
+- [eBPF Integration](internals/ebpf-integration.md) — BPF filtering, iterators, async convergence ✨⁶
+- [liburing Releases](internals/liburing-releases.md) — Release history, 2.14 current, API changes ✨⁶
+- [DMA-BUF Zero-Copy RX](internals/dmabuf-zcrx.md) — GPU/NPU direct networking via DMA-BUF (6.16) ✨⁶
 
 ### [Patterns](patterns/)
 - [Networking](patterns/networking.md) — TCP accept/recv/send, multishot, zero-copy
@@ -52,11 +55,13 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Futex Operations](patterns/futex-ops.md) — Async futex wait/wake/waitv (6.7+) ✨⁵
 - [Clone Buffers](patterns/clone-buffers.md) — Share registered buffer tables between rings ✨⁵
 - [Send MSG_RING Without Ring](patterns/send-msg-ring.md) — Signal a ring without owning one ✨⁵
+- [Waitid](patterns/waitid.md) — Async process waiting (IORING_OP_WAITID, 6.7) ✨⁶
 
 ### [Benchmarks](benchmarks/)
 - [io_uring vs epoll](benchmarks/iouring-vs-epoll.md) — The numbers that matter
 - [io_uring vs aio](benchmarks/iouring-vs-aio.md) — Why aio is dead
 - [io_uring vs DPDK](benchmarks/iouring-vs-dpdk.md) — Network I/O: kernel stack vs. bypass ✨✨
+- [Real-World Data](benchmarks/real-world-data.md) — Published numbers from ScyllaDB, Netty, fio ✨⁶
 
 ### [Frameworks](frameworks/)
 - [Overview](frameworks/overview.md) — Who's using io_uring and how
@@ -74,6 +79,7 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Cloudflare & Fastly](frameworks/cloudflare-fastly.md) — CDN production adoption patterns ✨⁴
 - [Zig std.Io](frameworks/zig-std-io.md) — io_uring as first-class stdlib backend (Feb 2026) ✨⁵
 - [Rust Ecosystem](frameworks/rust-ecosystem.md) — tokio-uring, monoio, glommio, compio, ringbahn survey ✨⁵
+- [ScyllaDB](frameworks/scylladb.md) — Production io_uring at petabyte scale ✨⁶
 
 ### [Pitfalls](pitfalls/)
 - [Common Mistakes](pitfalls/common-mistakes.md) — What will bite you
@@ -82,6 +88,8 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Debugging](pitfalls/debugging.md) — Tracepoints, bpftrace, perf, ftrace recipes ✨✨
 - [Cloud & Containers](pitfalls/cloud-containers.md) — Provider status, seccomp, enabling io_uring ✨✨
 - [CVE Timeline](pitfalls/cve-timeline.md) — Security vulnerabilities, hardening timeline, production guidance ✨✨✨
+- [Distro Support](pitfalls/distro-support.md) — RHEL disabled, Android locked, Docker blocked ✨⁶
+- [Testing](pitfalls/testing.md) — liburing test suite, syzkaller fuzzing, CI patterns ✨⁶
 
 ### [Resources](resources/)
 - [Links](resources/links.md) — Papers, talks, articles, source code
@@ -102,6 +110,7 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 | `DEFER_TASKRUN` | 6.1 |
 | `SINGLE_ISSUER` | 6.0 |
 | `COOP_TASKRUN` | 5.19 |
+| Waitid | 6.7 |
 | Futex ops | 6.7 |
 | NAPI busy poll | 6.9 |
 | Incremental buffer consumption (`IOU_PBUF_RING_INC`) | 6.10 |
