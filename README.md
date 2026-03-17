@@ -25,6 +25,9 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Worker Pool](internals/worker-pool.md) — io-wq thread pool internals, limits, NUMA ✨✨
 - [Memory Ordering](internals/memory-ordering.md) — Shared memory barriers, SQ/CQ synchronization ✨✨
 - [Registered Wait](internals/registered-wait.md) — io_uring_reg_wait regions (6.13+) ✨✨
+- [NO_SQARRAY & SQ_REWIND](internals/no-sqarray.md) — Removing SQ indirection, flat batch submission ✨✨✨
+- [Mixed-Size SQEs/CQEs](internals/mixed-size.md) — CQE_MIXED and SQE_MIXED modes ✨✨✨
+- [Query API](internals/query-api.md) — IORING_REGISTER_QUERY unified capability detection ✨✨✨
 
 ### [Patterns](patterns/)
 - [Networking](patterns/networking.md) — TCP accept/recv/send, multishot, zero-copy
@@ -36,6 +39,9 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Zero-Copy RX](patterns/zero-copy-rx.md) — zcrx deep dive with structs and flow ✨
 - [epoll Migration](patterns/epoll-migration.md) — Incremental migration from epoll to io_uring ✨
 - [Error Handling](patterns/error-handling.md) — CQE errors, EINTR, link chains, multishot ✨✨
+- [Bundle Operations](patterns/bundle-ops.md) — Batched buffer recv/send, vectorized send ✨✨✨
+- [Fixed File Management](patterns/fixed-files.md) — Registration, auto-alloc, lifecycle patterns ✨✨✨
+- [Socket Options](patterns/socket-options.md) — Async getsockopt/setsockopt via URING_CMD ✨✨✨
 
 ### [Benchmarks](benchmarks/)
 - [io_uring vs epoll](benchmarks/iouring-vs-epoll.md) — The numbers that matter
@@ -53,6 +59,8 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [FUSE over io_uring](frameworks/fuse-io-uring.md) — Kernel↔userspace filesystem communication ✨
 - [Adoption Status](frameworks/adoption-status.md) — Who's using it, who isn't, and why ✨
 - [TigerBeetle Source](frameworks/tigerbeetle-source.md) — Deep dive into io/linux.zig implementation ✨✨
+- [Netty](frameworks/netty.md) — Java io_uring transport (Netty 4.2) ✨✨✨
+- [PostgreSQL](frameworks/postgresql.md) — Async I/O subsystem with io_uring backend ✨✨✨
 
 ### [Pitfalls](pitfalls/)
 - [Common Mistakes](pitfalls/common-mistakes.md) — What will bite you
@@ -60,6 +68,7 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [BPF Filtering](pitfalls/bpf-filtering.md) — Fine-grained io_uring sandboxing ✨
 - [Debugging](pitfalls/debugging.md) — Tracepoints, bpftrace, perf, ftrace recipes ✨✨
 - [Cloud & Containers](pitfalls/cloud-containers.md) — Provider status, seccomp, enabling io_uring ✨✨
+- [CVE Timeline](pitfalls/cve-timeline.md) — Security vulnerabilities, hardening timeline, production guidance ✨✨✨
 
 ### [Resources](resources/)
 - [Links](resources/links.md) — Papers, talks, articles, source code
@@ -95,10 +104,15 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 | Zero-copy RX (zcrx) | 6.15 |
 | epoll_wait via io_uring | 6.15 |
 | Vectored registered buffers | 6.15 |
+| NO_SQARRAY | 6.7 |
+| Bundle recv/send | 6.10 |
+| Socket URING_CMD (getsockopt, etc.) | 6.11 |
+| TX timestamps | 6.13 |
 | Mixed CQE sizes (`CQE_MIXED`) | 6.18 |
 | Mixed SQE sizes (`SQE_MIXED`) | 6.19 |
 | SQ Rewind | 6.19 |
 | BPF filtering | 6.19 |
+| REGISTER_QUERY | 6.19 |
 | zcrx queries / ctrl | 6.19 |
 
 ## Contributing
