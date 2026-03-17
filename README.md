@@ -41,6 +41,10 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Mixed-Size SQEs/CQEs (Detail)](internals/mixed-sqe-cqe.md) — CQE_F_SKIP, CQE_F_32, memory savings math ✨⁷
 - [Task Restrictions](internals/task-restrictions.md) — Per-task opcode/flag limits, ring sandboxing ✨⁷
 - [Kernel Changelog 6.18](internals/kernel-changelog-6.18.md) — Mixed CQEs, multishot URING_CMD, query API ✨⁷
+- [Request Lifecycle](internals/request-lifecycle.md) — SQE→CQE full kernel execution path ✨⁸
+- [NUMA](internals/numa.md) — Ring placement, worker affinity, cross-node pitfalls ✨⁸
+- [PBUF_STATUS](internals/pbuf-status.md) — Buffer group introspection (opcode 26) ✨⁸
+- [Embedded & Real-Time](internals/embedded-realtime.md) — PREEMPT_RT, deadline scheduling, embedded Linux ✨⁸
 
 ### [Patterns](patterns/)
 - [Networking](patterns/networking.md) — TCP accept/recv/send, multishot, zero-copy
@@ -64,6 +68,9 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Multishot URING_CMD](patterns/uring-cmd-multishot.md) — Generalized multishot for any driver (6.18) ✨⁷
 - [Decision Guide](patterns/decision-guide.md) — When to use io_uring vs alternatives ✨⁷
 - [Latency-Sensitive Workloads](patterns/realtime-latency.md) — Games, audio, trading: low-latency config ✨⁷
+- [Performance Tuning](patterns/performance-tuning.md) — Ring sizing, batch strategies, CQ overflow, anti-patterns ✨⁸
+- [Database Patterns](patterns/database-patterns.md) — WAL writes, page prefetch, fsync chains, group commit ✨⁸
+- [Ring-to-Ring Messaging](patterns/ring-messaging.md) — MSG_RING, fd passing, cross-thread coordination ✨⁸
 
 ### [Benchmarks](benchmarks/)
 - [io_uring vs epoll](benchmarks/iouring-vs-epoll.md) — The numbers that matter
@@ -89,6 +96,7 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Rust Ecosystem](frameworks/rust-ecosystem.md) — tokio-uring, monoio, glommio, compio, ringbahn survey ✨⁵
 - [ScyllaDB](frameworks/scylladb.md) — Production io_uring at petabyte scale ✨⁶
 - [ublk](frameworks/ublk.md) — Userspace block devices via io_uring passthrough ✨⁷
+- [Compio](frameworks/compio.md) — Cross-platform completion-based Rust runtime (io_uring + IOCP) ✨⁸
 
 ### [Pitfalls](pitfalls/)
 - [Common Mistakes](pitfalls/common-mistakes.md) — What will bite you
@@ -153,6 +161,9 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 | Multishot URING_CMD | 6.18 |
 | ublk batch I/O | 6.18 |
 | ublk zero-copy | 6.15 |
+| REGISTER_PBUF_STATUS | 6.4 |
+| MSG_RING | 5.18 |
+| MSG_RING fd passing | 6.0 |
 
 ## Contributing
 
