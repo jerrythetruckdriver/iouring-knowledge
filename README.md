@@ -28,6 +28,11 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [NO_SQARRAY & SQ_REWIND](internals/no-sqarray.md) — Removing SQ indirection, flat batch submission ✨✨✨
 - [Mixed-Size SQEs/CQEs](internals/mixed-size.md) — CQE_MIXED and SQE_MIXED modes ✨✨✨
 - [Query API](internals/query-api.md) — IORING_REGISTER_QUERY unified capability detection ✨✨✨
+- [Hybrid IOPOLL](internals/hybrid-iopoll.md) — Adaptive polling with sleep delay (6.13+) ✨⁴
+- [Memory Regions](internals/mem-region.md) — IORING_REGISTER_MEM_REGION, pre-mapped shared memory ✨⁴
+- [NVMe Passthrough](internals/nvme-passthrough.md) — URING_CMD for direct NVMe command submission ✨⁴
+- [NO_IOWAIT](internals/no-iowait.md) — Suppress iowait accounting (6.14+) ✨⁴
+- [Ring Resizing](internals/ring-resizing.md) — Runtime SQ/CQ ring resize (6.13+) ✨⁴
 
 ### [Patterns](patterns/)
 - [Networking](patterns/networking.md) — TCP accept/recv/send, multishot, zero-copy
@@ -42,6 +47,7 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Bundle Operations](patterns/bundle-ops.md) — Batched buffer recv/send, vectorized send ✨✨✨
 - [Fixed File Management](patterns/fixed-files.md) — Registration, auto-alloc, lifecycle patterns ✨✨✨
 - [Socket Options](patterns/socket-options.md) — Async getsockopt/setsockopt via URING_CMD ✨✨✨
+- [R/W Attributes](patterns/rw-attributes.md) — PI metadata for data integrity verification ✨⁴
 
 ### [Benchmarks](benchmarks/)
 - [io_uring vs epoll](benchmarks/iouring-vs-epoll.md) — The numbers that matter
@@ -61,6 +67,7 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [TigerBeetle Source](frameworks/tigerbeetle-source.md) — Deep dive into io/linux.zig implementation ✨✨
 - [Netty](frameworks/netty.md) — Java io_uring transport (Netty 4.2) ✨✨✨
 - [PostgreSQL](frameworks/postgresql.md) — Async I/O subsystem with io_uring backend ✨✨✨
+- [Cloudflare & Fastly](frameworks/cloudflare-fastly.md) — CDN production adoption patterns ✨⁴
 
 ### [Pitfalls](pitfalls/)
 - [Common Mistakes](pitfalls/common-mistakes.md) — What will bite you
