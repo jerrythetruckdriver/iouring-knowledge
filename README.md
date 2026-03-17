@@ -33,6 +33,7 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [NVMe Passthrough](internals/nvme-passthrough.md) — URING_CMD for direct NVMe command submission ✨⁴
 - [NO_IOWAIT](internals/no-iowait.md) — Suppress iowait accounting (6.14+) ✨⁴
 - [Ring Resizing](internals/ring-resizing.md) — Runtime SQ/CQ ring resize (6.13+) ✨⁴
+- [Kernel Changelog 6.15–6.17](internals/kernel-changelog-6.15-6.17.md) — zcrx, epoll_wait, DMA-BUF, pipe ✨⁵
 
 ### [Patterns](patterns/)
 - [Networking](patterns/networking.md) — TCP accept/recv/send, multishot, zero-copy
@@ -48,6 +49,9 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Fixed File Management](patterns/fixed-files.md) — Registration, auto-alloc, lifecycle patterns ✨✨✨
 - [Socket Options](patterns/socket-options.md) — Async getsockopt/setsockopt via URING_CMD ✨✨✨
 - [R/W Attributes](patterns/rw-attributes.md) — PI metadata for data integrity verification ✨⁴
+- [Futex Operations](patterns/futex-ops.md) — Async futex wait/wake/waitv (6.7+) ✨⁵
+- [Clone Buffers](patterns/clone-buffers.md) — Share registered buffer tables between rings ✨⁵
+- [Send MSG_RING Without Ring](patterns/send-msg-ring.md) — Signal a ring without owning one ✨⁵
 
 ### [Benchmarks](benchmarks/)
 - [io_uring vs epoll](benchmarks/iouring-vs-epoll.md) — The numbers that matter
@@ -68,6 +72,8 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Netty](frameworks/netty.md) — Java io_uring transport (Netty 4.2) ✨✨✨
 - [PostgreSQL](frameworks/postgresql.md) — Async I/O subsystem with io_uring backend ✨✨✨
 - [Cloudflare & Fastly](frameworks/cloudflare-fastly.md) — CDN production adoption patterns ✨⁴
+- [Zig std.Io](frameworks/zig-std-io.md) — io_uring as first-class stdlib backend (Feb 2026) ✨⁵
+- [Rust Ecosystem](frameworks/rust-ecosystem.md) — tokio-uring, monoio, glommio, compio, ringbahn survey ✨⁵
 
 ### [Pitfalls](pitfalls/)
 - [Common Mistakes](pitfalls/common-mistakes.md) — What will bite you
@@ -118,9 +124,13 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 | Mixed CQE sizes (`CQE_MIXED`) | 6.18 |
 | Mixed SQE sizes (`SQE_MIXED`) | 6.19 |
 | SQ Rewind | 6.19 |
+| Multiple zcrx IFQs | 6.16 |
+| DMA-BUF zcrx | 6.16 |
 | BPF filtering | 6.19 |
 | REGISTER_QUERY | 6.19 |
 | zcrx queries / ctrl | 6.19 |
+| REGISTER_SEND_MSG_RING | 6.10 |
+| REGISTER_CLONE_BUFFERS | 6.10 |
 
 ## Contributing
 
