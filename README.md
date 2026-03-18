@@ -45,6 +45,7 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [NUMA](internals/numa.md) — Ring placement, worker affinity, cross-node pitfalls ✨⁸
 - [PBUF_STATUS](internals/pbuf-status.md) — Buffer group introspection (opcode 26) ✨⁸
 - [Embedded & Real-Time](internals/embedded-realtime.md) — PREEMPT_RT, deadline scheduling, embedded Linux ✨⁸
+- [NVMe Admin Commands](internals/nvme-admin.md) — Admin queue via URING_CMD, identify, SMART, features ✨⁹
 
 ### [Patterns](patterns/)
 - [Networking](patterns/networking.md) — TCP accept/recv/send, multishot, zero-copy
@@ -71,6 +72,11 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Performance Tuning](patterns/performance-tuning.md) — Ring sizing, batch strategies, CQ overflow, anti-patterns ✨⁸
 - [Database Patterns](patterns/database-patterns.md) — WAL writes, page prefetch, fsync chains, group commit ✨⁸
 - [Ring-to-Ring Messaging](patterns/ring-messaging.md) — MSG_RING, fd passing, cross-thread coordination ✨⁸
+- [Splice Patterns](patterns/splice-patterns.md) — Zero-copy file↔socket↔socket via pipe ✨⁹
+- [Timeout Patterns](patterns/timeout-patterns.md) — Absolute, multishot, link timeout, registered clock ✨⁹
+- [Eventfd Integration](patterns/eventfd-integration.md) — Bridging io_uring to epoll/libuv/GLib event loops ✨⁹
+- [Socket Lifecycle](patterns/socket-lifecycle.md) — Full async socket→bind→listen→accept→recv→send→close ✨⁹
+- [Personality](patterns/personality.md) — Credential switching per operation ✨⁹
 
 ### [Benchmarks](benchmarks/)
 - [io_uring vs epoll](benchmarks/iouring-vs-epoll.md) — The numbers that matter
@@ -97,6 +103,8 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [ScyllaDB](frameworks/scylladb.md) — Production io_uring at petabyte scale ✨⁶
 - [ublk](frameworks/ublk.md) — Userspace block devices via io_uring passthrough ✨⁷
 - [Compio](frameworks/compio.md) — Cross-platform completion-based Rust runtime (io_uring + IOCP) ✨⁸
+- [Envoy](frameworks/envoy.md) — L7 proxy, experimental io_uring backend ✨⁹
+- [QEMU](frameworks/qemu.md) — VM block I/O via io_uring (since QEMU 5.0) ✨⁹
 
 ### [Pitfalls](pitfalls/)
 - [Common Mistakes](pitfalls/common-mistakes.md) — What will bite you
@@ -110,6 +118,7 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 
 ### [Resources](resources/)
 - [Links](resources/links.md) — Papers, talks, articles, source code
+- [Glossary](resources/glossary.md) — Quick reference for io_uring terminology ✨⁹
 
 ## Kernel Version Requirements
 
