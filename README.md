@@ -86,6 +86,8 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [EPOLL_CTL Operation](patterns/epoll-ctl-op.md) — Async epoll management from io_uring (5.6) ✨¹¹
 - [Fixed Buffer Updates](patterns/fixed-buffer-updates.md) — Tagged registration, dynamic update, hot-swap, clone ✨¹¹
 - [Signals](patterns/signals.md) — Signal masking, SIGCHLD replacement, signalfd integration ✨¹¹
+- [AIO Migration](patterns/aio-migration.md) — Replacing libaio/linux-aio with io_uring ✨¹²
+- [SQ/CQ Backpressure](patterns/backpressure.md) — Handling full rings, CQ overflow, batch strategies ✨¹²
 
 ### [Benchmarks](benchmarks/)
 - [io_uring vs epoll](benchmarks/iouring-vs-epoll.md) — The numbers that matter
@@ -117,6 +119,9 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [HTTP Servers](frameworks/http-servers.md) — Adoption in Nginx, H2O, Drogon, Caddy, etc. ✨¹⁰
 - [systemd & Proxies](frameworks/systemd-proxies.md) — Why systemd, HAProxy, and Traefik don't use io_uring ✨¹¹
 - [Edge Compute](frameworks/edge-compute.md) — Cloudflare Workers, Deno Deploy, Wasm runtimes ✨¹¹
+- [libuv / Node.js / Bun](frameworks/libuv-nodejs.md) — JS runtime io_uring adoption (file-only in libuv, none in Bun) ✨¹²
+- [Distributed Storage](frameworks/distributed-storage.md) — Ceph, MinIO, RocksDB, FoundationDB ✨¹²
+- [QEMU/KVM Virtio](frameworks/qemu-virtio.md) — io_uring in the virtualization stack, guest↔host path ✨¹²
 
 ### [Pitfalls](pitfalls/)
 - [Common Mistakes](pitfalls/common-mistakes.md) — What will bite you
@@ -132,6 +137,7 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 ### [Resources](resources/)
 - [Links](resources/links.md) — Papers, talks, articles, source code
 - [Glossary](resources/glossary.md) — Quick reference for io_uring terminology ✨⁹
+- [Cheat Sheet](resources/cheatsheet.md) — Quick reference card: setup, ops, flags, kernel versions ✨¹²
 
 ## Kernel Version Requirements
 
