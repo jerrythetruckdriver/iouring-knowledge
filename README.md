@@ -81,6 +81,11 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Poll Operations](patterns/poll-ops.md) — POLL_ADD multishot, level/edge trigger, update ✨¹⁰
 - [File Operations](patterns/file-ops.md) — Complete async file lifecycle: open, read, stat, xattr, fsync ✨¹⁰
 - [Custom URING_CMD](patterns/uring-cmd-custom.md) — Writing your own URING_CMD driver handler ✨¹⁰
+- [NAPI Busy Poll](patterns/napi-busy-poll.md) — Per-ring NAPI integration for sub-10µs network latency ✨¹¹
+- [Buffer API Comparison](patterns/buffer-api-comparison.md) — provide_buffers vs pbuf_ring: old vs new ✨¹¹
+- [EPOLL_CTL Operation](patterns/epoll-ctl-op.md) — Async epoll management from io_uring (5.6) ✨¹¹
+- [Fixed Buffer Updates](patterns/fixed-buffer-updates.md) — Tagged registration, dynamic update, hot-swap, clone ✨¹¹
+- [Signals](patterns/signals.md) — Signal masking, SIGCHLD replacement, signalfd integration ✨¹¹
 
 ### [Benchmarks](benchmarks/)
 - [io_uring vs epoll](benchmarks/iouring-vs-epoll.md) — The numbers that matter
@@ -110,6 +115,8 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Envoy](frameworks/envoy.md) — L7 proxy, experimental io_uring backend ✨⁹
 - [QEMU](frameworks/qemu.md) — VM block I/O via io_uring (since QEMU 5.0) ✨⁹
 - [HTTP Servers](frameworks/http-servers.md) — Adoption in Nginx, H2O, Drogon, Caddy, etc. ✨¹⁰
+- [systemd & Proxies](frameworks/systemd-proxies.md) — Why systemd, HAProxy, and Traefik don't use io_uring ✨¹¹
+- [Edge Compute](frameworks/edge-compute.md) — Cloudflare Workers, Deno Deploy, Wasm runtimes ✨¹¹
 
 ### [Pitfalls](pitfalls/)
 - [Common Mistakes](pitfalls/common-mistakes.md) — What will bite you
@@ -120,6 +127,7 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [CVE Timeline](pitfalls/cve-timeline.md) — Security vulnerabilities, hardening timeline, production guidance ✨✨✨
 - [Distro Support](pitfalls/distro-support.md) — RHEL disabled, Android locked, Docker blocked ✨⁶
 - [Testing](pitfalls/testing.md) — liburing test suite, syzkaller fuzzing, CI patterns ✨⁶
+- [Storage Infrastructure](pitfalls/storage-infra.md) — dm-crypt, LVM, bcachefs, XFS, NVMe passthrough ✨¹¹
 
 ### [Resources](resources/)
 - [Links](resources/links.md) — Papers, talks, articles, source code
@@ -186,6 +194,9 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 | POLL_ADD level-triggered | 5.18 |
 | xattr ops (get/set) | 5.19 |
 | ftruncate | 6.9 |
+| REGISTER_NAPI (busy poll) | 6.9 |
+| EPOLL_CTL | 5.6 |
+| Vectored registered R/W (READV_FIXED/WRITEV_FIXED) | 6.15 |
 
 ## Contributing
 
