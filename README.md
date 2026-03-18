@@ -77,6 +77,10 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Eventfd Integration](patterns/eventfd-integration.md) — Bridging io_uring to epoll/libuv/GLib event loops ✨⁹
 - [Socket Lifecycle](patterns/socket-lifecycle.md) — Full async socket→bind→listen→accept→recv→send→close ✨⁹
 - [Personality](patterns/personality.md) — Credential switching per operation ✨⁹
+- [Cancel Patterns](patterns/cancel-patterns.md) — ASYNC_CANCEL flags, cancel by fd/opcode/any, sync cancel ✨¹⁰
+- [Poll Operations](patterns/poll-ops.md) — POLL_ADD multishot, level/edge trigger, update ✨¹⁰
+- [File Operations](patterns/file-ops.md) — Complete async file lifecycle: open, read, stat, xattr, fsync ✨¹⁰
+- [Custom URING_CMD](patterns/uring-cmd-custom.md) — Writing your own URING_CMD driver handler ✨¹⁰
 
 ### [Benchmarks](benchmarks/)
 - [io_uring vs epoll](benchmarks/iouring-vs-epoll.md) — The numbers that matter
@@ -105,6 +109,7 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Compio](frameworks/compio.md) — Cross-platform completion-based Rust runtime (io_uring + IOCP) ✨⁸
 - [Envoy](frameworks/envoy.md) — L7 proxy, experimental io_uring backend ✨⁹
 - [QEMU](frameworks/qemu.md) — VM block I/O via io_uring (since QEMU 5.0) ✨⁹
+- [HTTP Servers](frameworks/http-servers.md) — Adoption in Nginx, H2O, Drogon, Caddy, etc. ✨¹⁰
 
 ### [Pitfalls](pitfalls/)
 - [Common Mistakes](pitfalls/common-mistakes.md) — What will bite you
@@ -173,6 +178,14 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 | REGISTER_PBUF_STATUS | 6.4 |
 | MSG_RING | 5.18 |
 | MSG_RING fd passing | 6.0 |
+| ASYNC_CANCEL by fd | 5.19 |
+| ASYNC_CANCEL_ANY | 6.0 |
+| ASYNC_CANCEL by opcode | 6.1 |
+| SYNC_CANCEL | 6.0 |
+| POLL_ADD multishot | 5.13 |
+| POLL_ADD level-triggered | 5.18 |
+| xattr ops (get/set) | 5.19 |
+| ftruncate | 6.9 |
 
 ## Contributing
 
