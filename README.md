@@ -46,6 +46,7 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [PBUF_STATUS](internals/pbuf-status.md) — Buffer group introspection (opcode 26) ✨⁸
 - [Embedded & Real-Time](internals/embedded-realtime.md) — PREEMPT_RT, deadline scheduling, embedded Linux ✨⁸
 - [NVMe Admin Commands](internals/nvme-admin.md) — Admin queue via URING_CMD, identify, SMART, features ✨⁹
+- [Kernel Changelog 6.19](internals/kernel-changelog-6.19.md) — Mixed SQEs, zcrx ctrl, getsockname, queries ✨¹³
 
 ### [Patterns](patterns/)
 - [Networking](patterns/networking.md) — TCP accept/recv/send, multishot, zero-copy
@@ -88,6 +89,8 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Signals](patterns/signals.md) — Signal masking, SIGCHLD replacement, signalfd integration ✨¹¹
 - [AIO Migration](patterns/aio-migration.md) — Replacing libaio/linux-aio with io_uring ✨¹²
 - [SQ/CQ Backpressure](patterns/backpressure.md) — Handling full rings, CQ overflow, batch strategies ✨¹²
+- [TUN/TAP Devices](patterns/tuntap.md) — io_uring with TUN/TAP: what works, what doesn't ✨¹³
+- [CQ Overflow Recovery](patterns/cq-overflow.md) — Overflow strategies, sizing, CQE_SKIP, monitoring ✨¹³
 
 ### [Benchmarks](benchmarks/)
 - [io_uring vs epoll](benchmarks/iouring-vs-epoll.md) — The numbers that matter
@@ -122,6 +125,8 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [libuv / Node.js / Bun](frameworks/libuv-nodejs.md) — JS runtime io_uring adoption (file-only in libuv, none in Bun) ✨¹²
 - [Distributed Storage](frameworks/distributed-storage.md) — Ceph, MinIO, RocksDB, FoundationDB ✨¹²
 - [QEMU/KVM Virtio](frameworks/qemu-virtio.md) — io_uring in the virtualization stack, guest↔host path ✨¹²
+- [Embedded Rust](frameworks/embedded-rust.md) — Embassy, probe-rs, and embedded Linux ✨¹³
+- [Media/Video Processing](frameworks/media-video.md) — GStreamer, FFmpeg, DMA-BUF video pipelines ✨¹³
 
 ### [Pitfalls](pitfalls/)
 - [Common Mistakes](pitfalls/common-mistakes.md) — What will bite you
@@ -133,6 +138,9 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Distro Support](pitfalls/distro-support.md) — RHEL disabled, Android locked, Docker blocked ✨⁶
 - [Testing](pitfalls/testing.md) — liburing test suite, syzkaller fuzzing, CI patterns ✨⁶
 - [Storage Infrastructure](pitfalls/storage-infra.md) — dm-crypt, LVM, bcachefs, XFS, NVMe passthrough ✨¹¹
+- [WSL2](pitfalls/wsl2.md) — io_uring on Windows Subsystem for Linux: works, with caveats ✨¹³
+- [Memory Overhead](pitfalls/memory-overhead.md) — Per-ring, per-request, registered resource costs ✨¹³
+- [Container Runtimes](pitfalls/container-runtimes.md) — Docker, Kubernetes, seccomp: why io_uring is blocked ✨¹³
 
 ### [Resources](resources/)
 - [Links](resources/links.md) — Papers, talks, articles, source code
@@ -183,6 +191,8 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 | BPF filtering | 6.19 |
 | REGISTER_QUERY | 6.19 |
 | zcrx queries / ctrl | 6.19 |
+| getsockname/getpeername via URING_CMD | 6.19 |
+| REGISTER_ZCRX_CTRL | 6.19 |
 | REGISTER_SEND_MSG_RING | 6.10 |
 | REGISTER_CLONE_BUFFERS | 6.10 |
 | REGISTER_CLOCK | 6.10 |
