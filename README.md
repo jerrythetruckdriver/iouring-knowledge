@@ -47,6 +47,9 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Embedded & Real-Time](internals/embedded-realtime.md) — PREEMPT_RT, deadline scheduling, embedded Linux ✨⁸
 - [NVMe Admin Commands](internals/nvme-admin.md) — Admin queue via URING_CMD, identify, SMART, features ✨⁹
 - [Kernel Changelog 6.19](internals/kernel-changelog-6.19.md) — Mixed SQEs, zcrx ctrl, getsockname, queries ✨¹³
+- [eBPF Iterators](internals/ebpf-iterators.md) — BPF iter introspection: task, fd, tracepoint approaches ✨¹⁴
+- [READV_FIXED / WRITEV_FIXED](internals/readv-writev-fixed.md) — Vectored I/O with registered buffers (6.15) ✨¹⁴
+- [GPIO/SPI/I2C](internals/gpio-spi-i2c.md) — Char device URING_CMD potential: status and workarounds ✨¹⁴
 
 ### [Patterns](patterns/)
 - [Networking](patterns/networking.md) — TCP accept/recv/send, multishot, zero-copy
@@ -91,12 +94,15 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [SQ/CQ Backpressure](patterns/backpressure.md) — Handling full rings, CQ overflow, batch strategies ✨¹²
 - [TUN/TAP Devices](patterns/tuntap.md) — io_uring with TUN/TAP: what works, what doesn't ✨¹³
 - [CQ Overflow Recovery](patterns/cq-overflow.md) — Overflow strategies, sizing, CQE_SKIP, monitoring ✨¹³
+- [Thread-per-Core](patterns/thread-per-core.md) — Architecture patterns: ring config, resources, messaging ✨¹⁴
+- [Async Filesystem Ops](patterns/async-fs-ops.md) — mkdir, rename, unlink, statx, xattr batch patterns ✨¹⁴
 
 ### [Benchmarks](benchmarks/)
 - [io_uring vs epoll](benchmarks/iouring-vs-epoll.md) — The numbers that matter
 - [io_uring vs aio](benchmarks/iouring-vs-aio.md) — Why aio is dead
 - [io_uring vs DPDK](benchmarks/iouring-vs-dpdk.md) — Network I/O: kernel stack vs. bypass ✨✨
 - [Real-World Data](benchmarks/real-world-data.md) — Published numbers from ScyllaDB, Netty, fio ✨⁶
+- [Benchmarking Methodology](benchmarks/methodology.md) — fio configs, perf-stat, tracing, anti-patterns ✨¹⁴
 
 ### [Frameworks](frameworks/)
 - [Overview](frameworks/overview.md) — Who's using io_uring and how
@@ -127,6 +133,8 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [QEMU/KVM Virtio](frameworks/qemu-virtio.md) — io_uring in the virtualization stack, guest↔host path ✨¹²
 - [Embedded Rust](frameworks/embedded-rust.md) — Embassy, probe-rs, and embedded Linux ✨¹³
 - [Media/Video Processing](frameworks/media-video.md) — GStreamer, FFmpeg, DMA-BUF video pipelines ✨¹³
+- [Rust Web Frameworks](frameworks/rust-web-frameworks.md) — Actix, Axum, Warp: why they all use epoll ✨¹⁴
+- [Redpanda](frameworks/redpanda.md) — Seastar-based streaming, io_uring for log I/O ✨¹⁴
 
 ### [Pitfalls](pitfalls/)
 - [Common Mistakes](pitfalls/common-mistakes.md) — What will bite you
@@ -141,6 +149,8 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [WSL2](pitfalls/wsl2.md) — io_uring on Windows Subsystem for Linux: works, with caveats ✨¹³
 - [Memory Overhead](pitfalls/memory-overhead.md) — Per-ring, per-request, registered resource costs ✨¹³
 - [Container Runtimes](pitfalls/container-runtimes.md) — Docker, Kubernetes, seccomp: why io_uring is blocked ✨¹³
+- [POSIX Compliance Gaps](pitfalls/posix-gaps.md) — io_uring vs POSIX: 12 behavior divergences ✨¹⁴
+- [Android](pitfalls/android.md) — GKI kernel, SELinux, seccomp: why io_uring is locked out ✨¹⁴
 
 ### [Resources](resources/)
 - [Links](resources/links.md) — Papers, talks, articles, source code
