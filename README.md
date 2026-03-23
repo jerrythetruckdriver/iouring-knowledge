@@ -96,6 +96,11 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [CQ Overflow Recovery](patterns/cq-overflow.md) — Overflow strategies, sizing, CQE_SKIP, monitoring ✨¹³
 - [Thread-per-Core](patterns/thread-per-core.md) — Architecture patterns: ring config, resources, messaging ✨¹⁴
 - [Async Filesystem Ops](patterns/async-fs-ops.md) — mkdir, rename, unlink, statx, xattr batch patterns ✨¹⁴
+- [kTLS Integration](patterns/ktls-integration.md) — Kernel TLS + io_uring: transparent encryption, HW offload ✨¹⁵
+- [WireGuard](patterns/wireguard.md) — io_uring and WireGuard: mostly orthogonal, here's why ✨¹⁵
+- [Async DNS](patterns/async-dns.md) — DNS resolution patterns: raw UDP, c-ares bridge, pre-resolve ✨¹⁵
+- [File Locking](patterns/file-locking.md) — No async lock ops: workarounds with futex, linked ops, architecture ✨¹⁵
+- [Versioning & Fallback](patterns/versioning-fallback.md) — Feature detection, graceful degradation, kernel matrix ✨¹⁵
 
 ### [Benchmarks](benchmarks/)
 - [io_uring vs epoll](benchmarks/iouring-vs-epoll.md) — The numbers that matter
@@ -135,6 +140,7 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Media/Video Processing](frameworks/media-video.md) — GStreamer, FFmpeg, DMA-BUF video pipelines ✨¹³
 - [Rust Web Frameworks](frameworks/rust-web-frameworks.md) — Actix, Axum, Warp: why they all use epoll ✨¹⁴
 - [Redpanda](frameworks/redpanda.md) — Seastar-based streaming, io_uring for log I/O ✨¹⁴
+- [Kafka Clients](frameworks/kafka-clients.md) — librdkafka, sarama, franz-go: why none use io_uring ✨¹⁵
 
 ### [Pitfalls](pitfalls/)
 - [Common Mistakes](pitfalls/common-mistakes.md) — What will bite you
@@ -151,6 +157,8 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Container Runtimes](pitfalls/container-runtimes.md) — Docker, Kubernetes, seccomp: why io_uring is blocked ✨¹³
 - [POSIX Compliance Gaps](pitfalls/posix-gaps.md) — io_uring vs POSIX: 12 behavior divergences ✨¹⁴
 - [Android](pitfalls/android.md) — GKI kernel, SELinux, seccomp: why io_uring is locked out ✨¹⁴
+- [Memory Pinning & MEMLOCK](pitfalls/memlock-pinning.md) — RLIMIT_MEMLOCK, page pinning, sizing, cgroups ✨¹⁵
+- [SCSI Generic](pitfalls/scsi-generic.md) — No URING_CMD for sg devices: status and workarounds ✨¹⁵
 
 ### [Resources](resources/)
 - [Links](resources/links.md) — Papers, talks, articles, source code
