@@ -50,6 +50,7 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [eBPF Iterators](internals/ebpf-iterators.md) — BPF iter introspection: task, fd, tracepoint approaches ✨¹⁴
 - [READV_FIXED / WRITEV_FIXED](internals/readv-writev-fixed.md) — Vectored I/O with registered buffers (6.15) ✨¹⁴
 - [GPIO/SPI/I2C](internals/gpio-spi-i2c.md) — Char device URING_CMD potential: status and workarounds ✨¹⁴
+- [CQE Delivery Model](internals/completion-model.md) — Completion paths, CQ ring mechanics, batch processing ✨¹⁷
 
 ### [Patterns](patterns/)
 - [Networking](patterns/networking.md) — TCP accept/recv/send, multishot, zero-copy
@@ -105,6 +106,9 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [sendfile() Equivalence](patterns/sendfile-equiv.md) — Splice, SEND_ZC, bundle ops: replacing sendfile/recvmmsg ✨¹⁶
 - [Error Recovery](patterns/error-recovery.md) — Retry strategies, partial chains, short reads, cancel cleanup ✨¹⁶
 - [Why No MMAP Op](patterns/mmap-gap.md) — Address space ops aren't I/O: registered buffers instead ✨¹⁶
+- [inotify/fanotify](patterns/inotify-fanotify.md) — Filesystem notifications via POLL_ADD and READ ✨¹⁷
+- [Completion Ordering](patterns/completion-ordering.md) — What's ordered, what's not, how to enforce ✨¹⁷
+- [pidfd Operations](patterns/pidfd-ops.md) — Async process management with pidfd + WAITID ✨¹⁷
 
 ### [Benchmarks](benchmarks/)
 - [io_uring vs epoll](benchmarks/iouring-vs-epoll.md) — The numbers that matter
@@ -148,6 +152,8 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Valkey / Redis](frameworks/valkey-redis.md) — AOF io_uring (+29% QPS), batch writes, fork status ✨¹⁶
 - [gRPC](frameworks/grpc.md) — Not adopted: HTTP/2 + protobuf dominate, not syscalls ✨¹⁶
 - [HAProxy 3.x](frameworks/haproxy-3x.md) — Still no io_uring: protocol parsing is the bottleneck ✨¹⁶
+- [ClickHouse](frameworks/clickhouse.md) — IOUringReader: async reads for columnar storage ✨¹⁷
+- [ML Inference](frameworks/ml-inference.md) — Why ML frameworks don't use io_uring (yet) ✨¹⁷
 
 ### [Pitfalls](pitfalls/)
 - [Common Mistakes](pitfalls/common-mistakes.md) — What will bite you
@@ -167,6 +173,7 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Memory Pinning & MEMLOCK](pitfalls/memlock-pinning.md) — RLIMIT_MEMLOCK, page pinning, sizing, cgroups ✨¹⁵
 - [SCSI Generic](pitfalls/scsi-generic.md) — No URING_CMD for sg devices: status and workarounds ✨¹⁵
 - [BSD & Other OS Portability](pitfalls/bsd-portability.md) — FreeBSD, macOS, Windows: no io_uring, what they have ✨¹⁶
+- [Namespace Restrictions](pitfalls/namespace-restrictions.md) — User/net/mount/cgroup namespace interactions ✨¹⁷
 
 ### [Resources](resources/)
 - [Links](resources/links.md) — Papers, talks, articles, source code
