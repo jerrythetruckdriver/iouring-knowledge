@@ -101,6 +101,10 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Async DNS](patterns/async-dns.md) — DNS resolution patterns: raw UDP, c-ares bridge, pre-resolve ✨¹⁵
 - [File Locking](patterns/file-locking.md) — No async lock ops: workarounds with futex, linked ops, architecture ✨¹⁵
 - [Versioning & Fallback](patterns/versioning-fallback.md) — Feature detection, graceful degradation, kernel matrix ✨¹⁵
+- [Ring Topology](patterns/ring-topology.md) — Per-thread vs per-connection vs shared ring trade-offs ✨¹⁶
+- [sendfile() Equivalence](patterns/sendfile-equiv.md) — Splice, SEND_ZC, bundle ops: replacing sendfile/recvmmsg ✨¹⁶
+- [Error Recovery](patterns/error-recovery.md) — Retry strategies, partial chains, short reads, cancel cleanup ✨¹⁶
+- [Why No MMAP Op](patterns/mmap-gap.md) — Address space ops aren't I/O: registered buffers instead ✨¹⁶
 
 ### [Benchmarks](benchmarks/)
 - [io_uring vs epoll](benchmarks/iouring-vs-epoll.md) — The numbers that matter
@@ -141,6 +145,9 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Rust Web Frameworks](frameworks/rust-web-frameworks.md) — Actix, Axum, Warp: why they all use epoll ✨¹⁴
 - [Redpanda](frameworks/redpanda.md) — Seastar-based streaming, io_uring for log I/O ✨¹⁴
 - [Kafka Clients](frameworks/kafka-clients.md) — librdkafka, sarama, franz-go: why none use io_uring ✨¹⁵
+- [Valkey / Redis](frameworks/valkey-redis.md) — AOF io_uring (+29% QPS), batch writes, fork status ✨¹⁶
+- [gRPC](frameworks/grpc.md) — Not adopted: HTTP/2 + protobuf dominate, not syscalls ✨¹⁶
+- [HAProxy 3.x](frameworks/haproxy-3x.md) — Still no io_uring: protocol parsing is the bottleneck ✨¹⁶
 
 ### [Pitfalls](pitfalls/)
 - [Common Mistakes](pitfalls/common-mistakes.md) — What will bite you
@@ -159,6 +166,7 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Android](pitfalls/android.md) — GKI kernel, SELinux, seccomp: why io_uring is locked out ✨¹⁴
 - [Memory Pinning & MEMLOCK](pitfalls/memlock-pinning.md) — RLIMIT_MEMLOCK, page pinning, sizing, cgroups ✨¹⁵
 - [SCSI Generic](pitfalls/scsi-generic.md) — No URING_CMD for sg devices: status and workarounds ✨¹⁵
+- [BSD & Other OS Portability](pitfalls/bsd-portability.md) — FreeBSD, macOS, Windows: no io_uring, what they have ✨¹⁶
 
 ### [Resources](resources/)
 - [Links](resources/links.md) — Papers, talks, articles, source code
