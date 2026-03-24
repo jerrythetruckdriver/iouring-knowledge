@@ -51,6 +51,8 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [READV_FIXED / WRITEV_FIXED](internals/readv-writev-fixed.md) — Vectored I/O with registered buffers (6.15) ✨¹⁴
 - [GPIO/SPI/I2C](internals/gpio-spi-i2c.md) — Char device URING_CMD potential: status and workarounds ✨¹⁴
 - [CQE Delivery Model](internals/completion-model.md) — Completion paths, CQ ring mechanics, batch processing ✨¹⁷
+- [Block Device Passthrough](internals/block-passthrough.md) — URING_CMD for NVMe, ublk, why only NVMe ✨¹⁸
+- [I/O Scheduler Interaction](internals/io-scheduler-interaction.md) — mq-deadline, BFQ, IOPOLL, cgroup accounting ✨¹⁸
 
 ### [Patterns](patterns/)
 - [Networking](patterns/networking.md) — TCP accept/recv/send, multishot, zero-copy
@@ -109,6 +111,10 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [inotify/fanotify](patterns/inotify-fanotify.md) — Filesystem notifications via POLL_ADD and READ ✨¹⁷
 - [Completion Ordering](patterns/completion-ordering.md) — What's ordered, what's not, how to enforce ✨¹⁷
 - [pidfd Operations](patterns/pidfd-ops.md) — Async process management with pidfd + WAITID ✨¹⁷
+- [recvmsg Ancillary Data](patterns/recvmsg-cmsg.md) — cmsg handling, SCM_RIGHTS, multishot packing ✨¹⁸
+- [SQE Packing Strategies](patterns/sqe-packing.md) — Mixed SQE, batch optimization, SQ_REWIND, memory math ✨¹⁸
+- [Bluetooth HCI](patterns/bluetooth-hci.md) — Socket ops work, no URING_CMD, practical approach ✨¹⁸
+- [PROXY Protocol](patterns/proxy-protocol.md) — v1/v2 header parsing with multishot recv ✨¹⁸
 
 ### [Benchmarks](benchmarks/)
 - [io_uring vs epoll](benchmarks/iouring-vs-epoll.md) — The numbers that matter
@@ -116,6 +122,7 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [io_uring vs DPDK](benchmarks/iouring-vs-dpdk.md) — Network I/O: kernel stack vs. bypass ✨✨
 - [Real-World Data](benchmarks/real-world-data.md) — Published numbers from ScyllaDB, Netty, fio ✨⁶
 - [Benchmarking Methodology](benchmarks/methodology.md) — fio configs, perf-stat, tracing, anti-patterns ✨¹⁴
+- [mmap vs io_uring](benchmarks/mmap-vs-iouring.md) — Random reads: page faults vs explicit I/O ✨¹⁸
 
 ### [Frameworks](frameworks/)
 - [Overview](frameworks/overview.md) — Who's using io_uring and how
@@ -154,6 +161,8 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [HAProxy 3.x](frameworks/haproxy-3x.md) — Still no io_uring: protocol parsing is the bottleneck ✨¹⁶
 - [ClickHouse](frameworks/clickhouse.md) — IOUringReader: async reads for columnar storage ✨¹⁷
 - [ML Inference](frameworks/ml-inference.md) — Why ML frameworks don't use io_uring (yet) ✨¹⁷
+- [Samba / NFS](frameworks/samba-nfs.md) — Kernel servers don't need io_uring, here's why ✨¹⁸
+- [LevelDB / Pebble](frameworks/leveldb-pebble.md) — Go LSM engines can't, C++ LSM engines won't ✨¹⁸
 
 ### [Pitfalls](pitfalls/)
 - [Common Mistakes](pitfalls/common-mistakes.md) — What will bite you
