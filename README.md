@@ -129,6 +129,9 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [WASI / WebAssembly](patterns/wasi-webassembly.md) — WASI I/O model gap, runtime-level io_uring, async ABI future ✨²¹
 - [Network Device Offload](patterns/network-device-offload.md) — Socket URING_CMD, kTLS HW, NAPI, zcrx convergence ✨²¹
 - [Registered Buffer Alignment](patterns/registered-buffer-alignment.md) — DMA targets, O_DIRECT, NUMA, huge pages ✨²¹
+- [HTTP/3 & QUIC Patterns](patterns/quic-http3.md) — UDP multishot recv, bundle send, NAPI, GSO/GRO ✨²²
+- [MPTCP](patterns/mptcp.md) — Multipath TCP: transparent io_uring compatibility ✨²²
+- [Observability](patterns/observability.md) — Prometheus metrics, tracing, /proc, bpftrace exporters ✨²²
 
 ### [Benchmarks](benchmarks/)
 - [io_uring vs epoll](benchmarks/iouring-vs-epoll.md) — The numbers that matter
@@ -188,6 +191,9 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [RocksDB (Updated)](frameworks/rocksdb-update.md) — Production io_uring: MultiRead, ReadAsync, SINGLE_ISSUER+DEFER_TASKRUN ✨²¹
 - [Zig Web Frameworks](frameworks/zig-web-frameworks.md) — Zap, http.zig, std.Io.Evented: current state ✨²¹
 - [DragonflyBSD / HAMMER2](frameworks/dragonfly-hammer2.md) — Different OS, different I/O model, no overlap ✨²¹
+- [Java / Project Loom](frameworks/java-loom.md) — Virtual threads use epoll, Netty is the io_uring path ✨²²
+- [Deno](frameworks/deno.md) — Tokio dependency, no io_uring, same story as every Rust runtime ✨²²
+- [Redpanda Wasm Transforms](frameworks/redpanda-wasm.md) — V8 isolates compute, Seastar does I/O ✨²²
 
 ### [Pitfalls](pitfalls/)
 - [Common Mistakes](pitfalls/common-mistakes.md) — What will bite you
@@ -210,6 +216,9 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Namespace Restrictions](pitfalls/namespace-restrictions.md) — User/net/mount/cgroup namespace interactions ✨¹⁷
 - [CPU Affinity](pitfalls/cpu-affinity.md) — SQPOLL pinning, io-wq worker affinity, NUMA, HT siblings ✨²⁰
 - [cgroup v2 I/O Accounting](pitfalls/cgroup-v2-accounting.md) — Block throttling, memory accounting, NUMA, K8s ✨²¹
+- [SELinux Policy](pitfalls/selinux.md) — io_uring permissions, RHEL policy, audit2allow, production guidance ✨²²
+- [Memory Pressure](pitfalls/memory-pressure.md) — OOM, ENOMEM recovery, pinned pages, cgroup limits ✨²²
+- [Kernel Live Patching](pitfalls/kernel-livepatch.md) — kpatch/livepatch with active rings, SQPOLL interaction ✨²²
 
 ### [Resources](resources/)
 - [Links](resources/links.md) — Papers, talks, articles, source code

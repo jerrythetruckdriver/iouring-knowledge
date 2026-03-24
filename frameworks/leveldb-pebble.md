@@ -33,13 +33,13 @@ Pebble's approach to I/O performance:
 
 The I/O bottleneck in Pebble isn't syscall overhead — it's compaction throughput and Go's garbage collector pausing during memory-intensive operations.
 
-## RocksDB (for comparison)
+## RocksDB
 
-C++, Facebook. Could theoretically use io_uring.
+C++, Facebook. **Has production io_uring support.** See [rocksdb-update.md](rocksdb-update.md) for full analysis.
 
-**Current state:** `MultiRead()` uses `preadv2()` with thread pool. No io_uring backend shipped. There was a [prototype patch](https://github.com/facebook/rocksdb/pull/7672) in 2020 that added io_uring for `MultiGet()`, achieving ~2x improvement in multi-read scenarios. It was merged but later reverted due to complexity.
+**Current state:** Thread-local rings with `IORING_SETUP_SINGLE_ISSUER` + `IORING_SETUP_DEFER_TASKRUN`, 256-entry depth. Two rings per thread: one for `MultiRead()` (batch SST random reads via `io_uring_prep_readv`, `submit_and_wait`), one for `ReadAsync()` (prefetch). Short read resubmission, `EAGAIN`/`EINTR` retry. Falls back to serial `pread()` on init failure. `RocksDbIOUringEnable()` weak symbol for runtime control.
 
-RocksDB's `Env` abstraction supports pluggable I/O, and the `FileSystem` interface could accommodate io_uring, but maintainer interest has been low. The argument: for SSD workloads, the difference between preadv2 and io_uring for scattered reads is measurable but not transformative.
+The earlier 2020 prototype was not reverted — it evolved into the current production implementation.
 
 ## The LSM Pattern
 
