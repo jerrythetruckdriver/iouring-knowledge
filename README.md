@@ -53,8 +53,7 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [CQE Delivery Model](internals/completion-model.md) — Completion paths, CQ ring mechanics, batch processing ✨¹⁷
 - [Block Device Passthrough](internals/block-passthrough.md) — URING_CMD for NVMe, ublk, why only NVMe ✨¹⁸
 - [I/O Scheduler Interaction](internals/io-scheduler-interaction.md) — mq-deadline, BFQ, IOPOLL, cgroup accounting ✨¹⁸
-
-*No new internals this session — focus on patterns and frameworks.*
+- [ABI Stability](internals/abi-stability.md) — Kernel ABI guarantees, struct freezing, feature detection strategy ✨²⁰
 
 ### [Patterns](patterns/)
 - [Networking](patterns/networking.md) — TCP accept/recv/send, multishot, zero-copy
@@ -122,6 +121,9 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [MSG_WAITALL & Other Flags](patterns/msg-flags.md) — MSG_WAITALL, MSG_DONTWAIT, MSG_MORE, MSG_NOSIGNAL ✨¹⁹
 - [Cross-Ring Buffer Sharing](patterns/cross-ring-buffers.md) — Clone buffers, partial clone, MSG_RING dispatch ✨¹⁹
 - [Resource Cleanup](patterns/resource-cleanup.md) — Ring teardown, fd leaks, graceful shutdown pattern ✨¹⁹
+- [Unix Domain Sockets](patterns/unix-domain-sockets.md) — SCM_RIGHTS fd passing, SCM_CREDENTIALS, abstract namespace ✨²⁰
+- [Multi-Ring Event Loops](patterns/multi-ring-patterns.md) — Storage+network split, eventfd bridge, MSG_RING notification ✨²⁰
+- [TUN/TAP Deep Dive](patterns/tuntap-deep-dive.md) — URING_CMD potential, multi-queue, batched VPN pattern ✨²⁰
 
 ### [Benchmarks](benchmarks/)
 - [io_uring vs epoll](benchmarks/iouring-vs-epoll.md) — The numbers that matter
@@ -130,6 +132,7 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Real-World Data](benchmarks/real-world-data.md) — Published numbers from ScyllaDB, Netty, fio ✨⁶
 - [Benchmarking Methodology](benchmarks/methodology.md) — fio configs, perf-stat, tracing, anti-patterns ✨¹⁴
 - [mmap vs io_uring](benchmarks/mmap-vs-iouring.md) — Random reads: page faults vs explicit I/O ✨¹⁸
+- [Kernel Bypass Comparison](benchmarks/kernel-bypass-comparison.md) — io_uring vs DPDK vs XDP vs AF_XDP ✨²⁰
 
 ### [Frameworks](frameworks/)
 - [Overview](frameworks/overview.md) — Who's using io_uring and how
@@ -173,6 +176,9 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [SQLite](frameworks/sqlite.md) — No native support, WAL mode solved the problem ✨¹⁹
 - [PostgreSQL Clients (libpq)](frameworks/libpq-clients.md) — Client libraries don't need io_uring, servers do ✨¹⁹
 - [Seastar Networking](frameworks/seastar-networking.md) — io_uring for storage, not networking: source analysis ✨¹⁹
+- [Go + cgo](frameworks/go-cgo.md) — Pure Go (giouring/Gain) vs cgo: impedance mismatch analysis ✨²⁰
+- [BEAM / Elixir](frameworks/beam-elixir.md) — Erlang VM I/O model, NIF approach, why it doesn't need io_uring ✨²⁰
+- [Container Orchestrators](frameworks/container-orchestrators.md) — K8s, Nomad, gVisor, Kata: who allows io_uring ✨²⁰
 
 ### [Pitfalls](pitfalls/)
 - [Common Mistakes](pitfalls/common-mistakes.md) — What will bite you
@@ -193,6 +199,7 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [SCSI Generic](pitfalls/scsi-generic.md) — No URING_CMD for sg devices: status and workarounds ✨¹⁵
 - [BSD & Other OS Portability](pitfalls/bsd-portability.md) — FreeBSD, macOS, Windows: no io_uring, what they have ✨¹⁶
 - [Namespace Restrictions](pitfalls/namespace-restrictions.md) — User/net/mount/cgroup namespace interactions ✨¹⁷
+- [CPU Affinity](pitfalls/cpu-affinity.md) — SQPOLL pinning, io-wq worker affinity, NUMA, HT siblings ✨²⁰
 
 ### [Resources](resources/)
 - [Links](resources/links.md) — Papers, talks, articles, source code
