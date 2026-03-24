@@ -54,6 +54,8 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Block Device Passthrough](internals/block-passthrough.md) — URING_CMD for NVMe, ublk, why only NVMe ✨¹⁸
 - [I/O Scheduler Interaction](internals/io-scheduler-interaction.md) — mq-deadline, BFQ, IOPOLL, cgroup accounting ✨¹⁸
 
+*No new internals this session — focus on patterns and frameworks.*
+
 ### [Patterns](patterns/)
 - [Networking](patterns/networking.md) — TCP accept/recv/send, multishot, zero-copy
 - [File I/O](patterns/file-io.md) — Read/write, fixed buffers, registered files
@@ -115,6 +117,11 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [SQE Packing Strategies](patterns/sqe-packing.md) — Mixed SQE, batch optimization, SQ_REWIND, memory math ✨¹⁸
 - [Bluetooth HCI](patterns/bluetooth-hci.md) — Socket ops work, no URING_CMD, practical approach ✨¹⁸
 - [PROXY Protocol](patterns/proxy-protocol.md) — v1/v2 header parsing with multishot recv ✨¹⁸
+- [TCP_CORK & TCP_NODELAY](patterns/tcp-cork-nodelay.md) — Socket option interaction, MSG_MORE, vectored send ✨¹⁹
+- [Accept Flags & Direct Descriptors](patterns/accept-flags.md) — accept4 flags, multishot, auto-alloc, file_index ✨¹⁹
+- [MSG_WAITALL & Other Flags](patterns/msg-flags.md) — MSG_WAITALL, MSG_DONTWAIT, MSG_MORE, MSG_NOSIGNAL ✨¹⁹
+- [Cross-Ring Buffer Sharing](patterns/cross-ring-buffers.md) — Clone buffers, partial clone, MSG_RING dispatch ✨¹⁹
+- [Resource Cleanup](patterns/resource-cleanup.md) — Ring teardown, fd leaks, graceful shutdown pattern ✨¹⁹
 
 ### [Benchmarks](benchmarks/)
 - [io_uring vs epoll](benchmarks/iouring-vs-epoll.md) — The numbers that matter
@@ -163,6 +170,9 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [ML Inference](frameworks/ml-inference.md) — Why ML frameworks don't use io_uring (yet) ✨¹⁷
 - [Samba / NFS](frameworks/samba-nfs.md) — Kernel servers don't need io_uring, here's why ✨¹⁸
 - [LevelDB / Pebble](frameworks/leveldb-pebble.md) — Go LSM engines can't, C++ LSM engines won't ✨¹⁸
+- [SQLite](frameworks/sqlite.md) — No native support, WAL mode solved the problem ✨¹⁹
+- [PostgreSQL Clients (libpq)](frameworks/libpq-clients.md) — Client libraries don't need io_uring, servers do ✨¹⁹
+- [Seastar Networking](frameworks/seastar-networking.md) — io_uring for storage, not networking: source analysis ✨¹⁹
 
 ### [Pitfalls](pitfalls/)
 - [Common Mistakes](pitfalls/common-mistakes.md) — What will bite you
