@@ -20,6 +20,7 @@ Survey of major HTTP servers and their io_uring status as of March 2026.
 | **Vert.x** | Java | ✅ Via Netty | Inherited | Uses Netty transport underneath. |
 | **libuv/Node.js** | C/JS | ❌ No | Under discussion | libuv has epoll. io_uring PR exists but not merged. |
 | **Bun** | Zig | ❌ No | epoll | Uses custom event loop, not Zig's std.Io yet. |
+| **Apache Traffic Server** | C++ | ✅ Yes | Production | Thread-local rings, SQPOLL, eventfd bridge. Disk AIO path. See [traffic-server.md](traffic-server.md). |
 
 ## Why So Few?
 

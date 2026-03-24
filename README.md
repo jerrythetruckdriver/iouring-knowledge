@@ -132,6 +132,11 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [HTTP/3 & QUIC Patterns](patterns/quic-http3.md) — UDP multishot recv, bundle send, NAPI, GSO/GRO ✨²²
 - [MPTCP](patterns/mptcp.md) — Multipath TCP: transparent io_uring compatibility ✨²²
 - [Observability](patterns/observability.md) — Prometheus metrics, tracing, /proc, bpftrace exporters ✨²²
+- [Huge Pages](patterns/hugepages.md) — 2MB/1GB pages for registered buffers, TLB, NUMA ✨²³
+- [sendmsg_zc Patterns](patterns/sendmsg-zc.md) — MSG_ZEROCOPY for UDP, GSO, vectored send, notifications ✨²³
+- [Batch Connect](patterns/batch-connect.md) — Many outbound connections: linked chains, pool warmup, rate limiting ✨²³
+- [user_data Encoding](patterns/userdata-encoding.md) — Request tracking: pointer, packed int, slab, tagged pointer, generation ✨²³
+- [vhost-user Devices](patterns/vhost-user.md) — Shared memory data plane, eventfd, ublk as alternative ✨²³
 
 ### [Benchmarks](benchmarks/)
 - [io_uring vs epoll](benchmarks/iouring-vs-epoll.md) — The numbers that matter
@@ -194,6 +199,9 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Java / Project Loom](frameworks/java-loom.md) — Virtual threads use epoll, Netty is the io_uring path ✨²²
 - [Deno](frameworks/deno.md) — Tokio dependency, no io_uring, same story as every Rust runtime ✨²²
 - [Redpanda Wasm Transforms](frameworks/redpanda-wasm.md) — V8 isolates compute, Seastar does I/O ✨²²
+- [async-std / smol](frameworks/async-std-smol.md) — Deprecated → smol: readiness-based, no io_uring ✨²³
+- [MariaDB / MySQL](frameworks/mariadb-mysql.md) — libaio (MySQL) and tpool (MariaDB): no io_uring ✨²³
+- [Apache Traffic Server](frameworks/traffic-server.md) — Production io_uring: thread-local rings, SQPOLL, eventfd bridge ✨²³
 
 ### [Pitfalls](pitfalls/)
 - [Common Mistakes](pitfalls/common-mistakes.md) — What will bite you
@@ -219,6 +227,8 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [SELinux Policy](pitfalls/selinux.md) — io_uring permissions, RHEL policy, audit2allow, production guidance ✨²²
 - [Memory Pressure](pitfalls/memory-pressure.md) — OOM, ENOMEM recovery, pinned pages, cgroup limits ✨²²
 - [Kernel Live Patching](pitfalls/kernel-livepatch.md) — kpatch/livepatch with active rings, SQPOLL interaction ✨²²
+- [AppArmor Policy](pitfalls/apparmor.md) — io_uring mediation: sqpoll, override_creds, Ubuntu/Debian ✨²³
+- [USB URING_CMD](pitfalls/usb-uring-cmd.md) — No URING_CMD for usbfs: URB async model, POLL_ADD bridge ✨²³
 
 ### [Resources](resources/)
 - [Links](resources/links.md) — Papers, talks, articles, source code
