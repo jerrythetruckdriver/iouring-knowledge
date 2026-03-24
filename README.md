@@ -124,6 +124,11 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Unix Domain Sockets](patterns/unix-domain-sockets.md) — SCM_RIGHTS fd passing, SCM_CREDENTIALS, abstract namespace ✨²⁰
 - [Multi-Ring Event Loops](patterns/multi-ring-patterns.md) — Storage+network split, eventfd bridge, MSG_RING notification ✨²⁰
 - [TUN/TAP Deep Dive](patterns/tuntap-deep-dive.md) — URING_CMD potential, multi-queue, batched VPN pattern ✨²⁰
+- [UDP Multishot Recv](patterns/udp-multishot.md) — DNS/QUIC/game server patterns, buffer sizing, recvmmsg comparison ✨²¹
+- [Connection Pooling](patterns/connection-pooling.md) — Database pools, HTTP/2 mux, batch connect, MSG_RING dispatch ✨²¹
+- [WASI / WebAssembly](patterns/wasi-webassembly.md) — WASI I/O model gap, runtime-level io_uring, async ABI future ✨²¹
+- [Network Device Offload](patterns/network-device-offload.md) — Socket URING_CMD, kTLS HW, NAPI, zcrx convergence ✨²¹
+- [Registered Buffer Alignment](patterns/registered-buffer-alignment.md) — DMA targets, O_DIRECT, NUMA, huge pages ✨²¹
 
 ### [Benchmarks](benchmarks/)
 - [io_uring vs epoll](benchmarks/iouring-vs-epoll.md) — The numbers that matter
@@ -179,6 +184,10 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Go + cgo](frameworks/go-cgo.md) — Pure Go (giouring/Gain) vs cgo: impedance mismatch analysis ✨²⁰
 - [BEAM / Elixir](frameworks/beam-elixir.md) — Erlang VM I/O model, NIF approach, why it doesn't need io_uring ✨²⁰
 - [Container Orchestrators](frameworks/container-orchestrators.md) — K8s, Nomad, gVisor, Kata: who allows io_uring ✨²⁰
+- [Swift NIO](frameworks/swift-nio.md) — Apple's server networking: poll-only io_uring backend, source analysis ✨²¹
+- [RocksDB (Updated)](frameworks/rocksdb-update.md) — Production io_uring: MultiRead, ReadAsync, SINGLE_ISSUER+DEFER_TASKRUN ✨²¹
+- [Zig Web Frameworks](frameworks/zig-web-frameworks.md) — Zap, http.zig, std.Io.Evented: current state ✨²¹
+- [DragonflyBSD / HAMMER2](frameworks/dragonfly-hammer2.md) — Different OS, different I/O model, no overlap ✨²¹
 
 ### [Pitfalls](pitfalls/)
 - [Common Mistakes](pitfalls/common-mistakes.md) — What will bite you
@@ -200,6 +209,7 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [BSD & Other OS Portability](pitfalls/bsd-portability.md) — FreeBSD, macOS, Windows: no io_uring, what they have ✨¹⁶
 - [Namespace Restrictions](pitfalls/namespace-restrictions.md) — User/net/mount/cgroup namespace interactions ✨¹⁷
 - [CPU Affinity](pitfalls/cpu-affinity.md) — SQPOLL pinning, io-wq worker affinity, NUMA, HT siblings ✨²⁰
+- [cgroup v2 I/O Accounting](pitfalls/cgroup-v2-accounting.md) — Block throttling, memory accounting, NUMA, K8s ✨²¹
 
 ### [Resources](resources/)
 - [Links](resources/links.md) — Papers, talks, articles, source code
