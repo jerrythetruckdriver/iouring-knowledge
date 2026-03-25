@@ -54,6 +54,7 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Block Device Passthrough](internals/block-passthrough.md) — URING_CMD for NVMe, ublk, why only NVMe ✨¹⁸
 - [I/O Scheduler Interaction](internals/io-scheduler-interaction.md) — mq-deadline, BFQ, IOPOLL, cgroup accounting ✨¹⁸
 - [ABI Stability](internals/abi-stability.md) — Kernel ABI guarantees, struct freezing, feature detection strategy ✨²⁰
+- [NVMe over Fabrics](internals/nvme-of.md) — NVMe-oF with io_uring: block path, char passthrough, NAPI, SPDK comparison ✨²⁴
 
 ### [Patterns](patterns/)
 - [Networking](patterns/networking.md) — TCP accept/recv/send, multishot, zero-copy
@@ -137,6 +138,12 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Batch Connect](patterns/batch-connect.md) — Many outbound connections: linked chains, pool warmup, rate limiting ✨²³
 - [user_data Encoding](patterns/userdata-encoding.md) — Request tracking: pointer, packed int, slab, tagged pointer, generation ✨²³
 - [vhost-user Devices](patterns/vhost-user.md) — Shared memory data plane, eventfd, ublk as alternative ✨²³
+- [SCTP](patterns/sctp.md) — Stream Control Transmission Protocol: cmsg handling, one-to-many sockets ✨²⁴
+- [SO_REUSEPORT + Multishot Accept](patterns/reuseport-accept.md) — Per-thread accept, BPF steering, thread-per-core ✨²⁴
+- [Zero-Downtime Restart](patterns/zero-downtime-restart.md) — Fd passing, graceful drain, SO_REUSEPORT alternative ✨²⁴
+- [Provided Buffer Ring Sizing](patterns/pbuf-ring-sizing.md) — Calculator: buffer count, size, groups, INC mode, monitoring ✨²⁴
+- [Multishot Timeout Rate Limiting](patterns/multishot-timeout-ratelimit.md) — Token bucket, periodic tasks, timer flags ✨²⁴
+- [Splice for Video Streaming](patterns/splice-video-streaming.md) — Zero-copy file→socket, TEE for multi-client, ABR ✨²⁴
 
 ### [Benchmarks](benchmarks/)
 - [io_uring vs epoll](benchmarks/iouring-vs-epoll.md) — The numbers that matter
@@ -202,6 +209,9 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [async-std / smol](frameworks/async-std-smol.md) — Deprecated → smol: readiness-based, no io_uring ✨²³
 - [MariaDB / MySQL](frameworks/mariadb-mysql.md) — libaio (MySQL) and tpool (MariaDB): no io_uring ✨²³
 - [Apache Traffic Server](frameworks/traffic-server.md) — Production io_uring: thread-local rings, SQPOLL, eventfd bridge ✨²³
+- [CockroachDB & Tarantool](frameworks/cockroachdb-tarantool.md) — Go (Pebble) and C (libev): why neither uses io_uring ✨²⁴
+- [Tarantool](frameworks/tarantool.md) — In-memory DB with libev fibers: no io_uring ✨²⁴
+- [Caddy & quic-go](frameworks/caddy-quicgo.md) — Go HTTP/QUIC: runtime limitation, where io_uring would help ✨²⁴
 
 ### [Pitfalls](pitfalls/)
 - [Common Mistakes](pitfalls/common-mistakes.md) — What will bite you
