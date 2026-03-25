@@ -57,6 +57,8 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [NVMe over Fabrics](internals/nvme-of.md) — NVMe-oF with io_uring: block path, char passthrough, NAPI, SPDK comparison ✨²⁴
 - [RDMA and io_uring](internals/rdma-uring.md) — Why no URING_CMD for RDMA verbs, bridging patterns ✨²⁵
 - [VFIO / GPU Passthrough](internals/vfio-gpu.md) — No URING_CMD needed: DMA bypasses kernel, interrupt bridging ✨²⁵
+- [SCSI Target (LIO/tcmu)](internals/scsi-target.md) — No URING_CMD: kernel-internal, ublk as alternative ✨²⁶
+- [NVMe-TCP Target](internals/nvme-tcp-target.md) — Target acceleration: kernel path, initiator io_uring, NAPI ✨²⁶
 
 ### [Patterns](patterns/)
 - [Networking](patterns/networking.md) — TCP accept/recv/send, multishot, zero-copy
@@ -151,6 +153,11 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [timerfd vs io_uring Timeouts](patterns/timerfd-comparison.md) — When to use each, bridge patterns ✨²⁵
 - [Connection Migration](patterns/connection-migration.md) — Moving connections between rings/threads: MSG_RING fd passing ✨²⁵
 - [Scatter-Gather DMA](patterns/scatter-gather-dma.md) — Vectored I/O, registered buffers, alignment, huge pages ✨²⁵
+- [Graceful Degradation Cookbook](patterns/graceful-degradation.md) — Feature detection → tiered backends → fallback code ✨²⁶
+- [TCP Keepalive](patterns/tcp-keepalive.md) — Keepalive setup, dead connection detection, linked recv+timeout ✨²⁶
+- [Multicast UDP](patterns/multicast-udp.md) — Group join, multishot recv, NAPI, SSM, buffer sizing ✨²⁶
+- [Per-SQE I/O Priority](patterns/ioprio.md) — ioprio field: block I/O priority, accept/recv/poll flags ✨²⁶
+- [Coroutine/Fiber Integration](patterns/coroutine-integration.md) — C++20, Zig fibers, Rust ownership, Go GC: completion model ✨²⁶
 
 ### [Benchmarks](benchmarks/)
 - [io_uring vs epoll](benchmarks/iouring-vs-epoll.md) — The numbers that matter
@@ -222,6 +229,9 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [etcd](frameworks/etcd.md) — Go + bbolt: no io_uring, Raft latency dominates ✨²⁵
 - [DuckDB](frameworks/duckdb.md) — Analytical DB: cross-platform, CPU-bound, mmap-based ✨²⁵
 - [Wasm Runtimes](frameworks/wasm-runtimes.md) — Wasmtime, Wasmer, WasmEdge: sandbox prevents ring access ✨²⁵
+- [FoundationDB](frameworks/foundationdb.md) — Boost.Asio io_uring (network) + RocksDB io_uring (storage) ✨²⁶
+- [Memcached](frameworks/memcached.md) — Experimental proxy io_uring: 2048 SQ, eventfd bridge, backend I/O ✨²⁶
+- [TiKV](frameworks/tikv.md) — Rust/RocksDB: inherits io_uring via storage engine FFI ✨²⁶
 
 ### [Pitfalls](pitfalls/)
 - [Common Mistakes](pitfalls/common-mistakes.md) — What will bite you
