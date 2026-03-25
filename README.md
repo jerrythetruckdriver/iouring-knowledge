@@ -55,6 +55,8 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [I/O Scheduler Interaction](internals/io-scheduler-interaction.md) — mq-deadline, BFQ, IOPOLL, cgroup accounting ✨¹⁸
 - [ABI Stability](internals/abi-stability.md) — Kernel ABI guarantees, struct freezing, feature detection strategy ✨²⁰
 - [NVMe over Fabrics](internals/nvme-of.md) — NVMe-oF with io_uring: block path, char passthrough, NAPI, SPDK comparison ✨²⁴
+- [RDMA and io_uring](internals/rdma-uring.md) — Why no URING_CMD for RDMA verbs, bridging patterns ✨²⁵
+- [VFIO / GPU Passthrough](internals/vfio-gpu.md) — No URING_CMD needed: DMA bypasses kernel, interrupt bridging ✨²⁵
 
 ### [Patterns](patterns/)
 - [Networking](patterns/networking.md) — TCP accept/recv/send, multishot, zero-copy
@@ -144,6 +146,11 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [Provided Buffer Ring Sizing](patterns/pbuf-ring-sizing.md) — Calculator: buffer count, size, groups, INC mode, monitoring ✨²⁴
 - [Multishot Timeout Rate Limiting](patterns/multishot-timeout-ratelimit.md) — Token bucket, periodic tasks, timer flags ✨²⁴
 - [Splice for Video Streaming](patterns/splice-video-streaming.md) — Zero-copy file→socket, TEE for multi-client, ABR ✨²⁴
+- [TCP Fast Open](patterns/tcp-fastopen.md) — TFO + io_uring: MSG_FASTOPEN, batch TFO connections ✨²⁵
+- [EPOLL_WAIT Migration](patterns/epoll-wait-migration.md) — IORING_OP_EPOLL_WAIT (6.15): phased migration guide ✨²⁵
+- [timerfd vs io_uring Timeouts](patterns/timerfd-comparison.md) — When to use each, bridge patterns ✨²⁵
+- [Connection Migration](patterns/connection-migration.md) — Moving connections between rings/threads: MSG_RING fd passing ✨²⁵
+- [Scatter-Gather DMA](patterns/scatter-gather-dma.md) — Vectored I/O, registered buffers, alignment, huge pages ✨²⁵
 
 ### [Benchmarks](benchmarks/)
 - [io_uring vs epoll](benchmarks/iouring-vs-epoll.md) — The numbers that matter
@@ -212,6 +219,9 @@ Zero-copy by design. In polling mode, zero syscalls. Memory-bound, not syscall-b
 - [CockroachDB & Tarantool](frameworks/cockroachdb-tarantool.md) — Go (Pebble) and C (libev): why neither uses io_uring ✨²⁴
 - [Tarantool](frameworks/tarantool.md) — In-memory DB with libev fibers: no io_uring ✨²⁴
 - [Caddy & quic-go](frameworks/caddy-quicgo.md) — Go HTTP/QUIC: runtime limitation, where io_uring would help ✨²⁴
+- [etcd](frameworks/etcd.md) — Go + bbolt: no io_uring, Raft latency dominates ✨²⁵
+- [DuckDB](frameworks/duckdb.md) — Analytical DB: cross-platform, CPU-bound, mmap-based ✨²⁵
+- [Wasm Runtimes](frameworks/wasm-runtimes.md) — Wasmtime, Wasmer, WasmEdge: sandbox prevents ring access ✨²⁵
 
 ### [Pitfalls](pitfalls/)
 - [Common Mistakes](pitfalls/common-mistakes.md) — What will bite you
